@@ -86,6 +86,19 @@ function Message:on_remove()
       self._buf_messages[buf][self.id] = nil
     end
   end
+  if self._remove_listeners then
+    for _, callback in ipairs(self._remove_listeners) do
+      callback(self)
+    end
+    self._remove_listeners = nil
+  end
+end
+
+function Message:add_remove_listener(callback)
+  if not self._remove_listeners then
+    self._remove_listeners = {}
+  end
+  table.insert(self._remove_listeners, callback)
 end
 
 function Message:on_win(win)

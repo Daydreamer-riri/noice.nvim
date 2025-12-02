@@ -57,6 +57,8 @@ local function make_position_params()
   end
 end
 
+M.make_position_params = make_position_params
+
 function M.scroll(delta)
   return require("noice.lsp.docs").scroll(delta)
 end
