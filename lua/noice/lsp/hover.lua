@@ -114,7 +114,9 @@ function M.on_hover(results, ctx)
           Docs.hide(message)
           ---@diagnostic disable-next-line: inject-field
           params.context = {
-            verbosityDelta = delta,
+            verbosityRequest = {
+              verbosityDelta = delta,
+            },
           }
           vim.lsp.buf_request_all(0, "textDocument/hover", params, M.on_hover)
         end, { silent = true, desc = desc })
